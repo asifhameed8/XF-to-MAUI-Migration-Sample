@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodels="clr-namespace:XFtoMAUIApp.ViewModels"
+             x:Class="XFtoMAUIApp.Views.HomePage"
+             x:DataType="viewmodels:HomeViewModel"
+             Title="Home">
+    <StackLayout Padding="20">
+        <Label Text="Welcome to the Home Page!" FontSize="24"/>
+        <Button Text="Load Appointments" Command="{Binding LoadAppointmentsCommand}" />
+        <ListView ItemsSource="{Binding Appointments}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <TextCell Text="{Binding Title}" Detail="{Binding Date}"/>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </StackLayout>
+</ContentPage>
