@@ -1,0 +1,26 @@
+using XFtoMAUIApp.Models;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+
+namespace XFtoMAUIApp.Services
+{
+    public class FeedbackService : IFeedbackService
+    {
+        private readonly List<ClientFeedback> _feedbacks = new();
+
+        public async Task<List<ClientFeedback>> GetFeedbackByProviderAsync(string providerName)
+        {
+            await Task.Delay(100);
+            return _feedbacks.Where(f => f.ProviderName == providerName).ToList();
+        }
+
+        public async Task<bool> SubmitFeedbackAsync(ClientFeedback feedback)
+        {
+            await Task.Delay(100);
+            feedback.FeedbackId = _feedbacks.Count + 1;
+            _feedbacks.Add(feedback);
+            return true;
+        }
+    }
+}
