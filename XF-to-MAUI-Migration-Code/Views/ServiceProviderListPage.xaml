@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodels="clr-namespace:XFtoMAUIApp.ViewModels"
+             x:Class="XFtoMAUIApp.Views.ServiceProviderListPage"
+             x:DataType="viewmodels:ServiceProviderViewModel"
+             Title="Service Providers">
+
+    <StackLayout Padding="20" Spacing="16">
+        <Label Text="Find Providers" FontSize="24" FontAttributes="Bold" />
+
+        <Entry Placeholder="Search by specialty"
+               Text="{Binding SpecialtyFilter}" />
+
+        <Button Text="Search"
+                Command="{Binding SearchProvidersCommand}" />
+
+        <CollectionView ItemsSource="{Binding Providers}"
+                        SelectionMode="Single"
+                        SelectedItem="{Binding SelectedProvider}"
+                        Margin="0,10,0,0">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Frame Padding="10" Margin="0,5" BorderColor="LightGray" CornerRadius="10">
+                        <VerticalStackLayout>
+                            <Label Text="{Binding Name}" FontAttributes="Bold" FontSize="18"/>
+                            <Label Text="{Binding Specialty}" FontSize="14"/>
+                            <Label Text="{Binding Phone}" FontSize="12" TextColor="Gray"/>
+                            <Label Text="{Binding Email}" FontSize="12" TextColor="Gray"/>
+                            <Label Text="{Binding OfficeLocation}" FontSize="12"/>
+                            <Label Text="{Binding Rating, StringFormat='Rating: {0:F1}'}" FontSize="12"/>
+                            <Label Text="{Binding IsAvailable, Converter={StaticResource BoolToAvailabilityConverter}}" 
+                                   FontAttributes="Italic" FontSize="12"
+                                   TextColor="{Binding IsAvailable, Converter={StaticResource BoolToColorConverter}}" />
+                        </VerticalStackLayout>
+                    </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+        <Button Text="View Profile"
+                Command="{Binding ViewProfileCommand}"
+                IsEnabled="{Binding SelectedProvider}" />
+
+        <Button Text="Call Provider"
+                Command="{Binding CallProviderCommand}"
+                IsEnabled="{Binding SelectedProvider}" />
+    </StackLayout>
+</ContentPage>
