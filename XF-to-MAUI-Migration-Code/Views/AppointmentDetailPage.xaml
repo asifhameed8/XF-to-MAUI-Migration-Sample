@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodels="clr-namespace:XFtoMAUIApp.ViewModels"
+             x:Class="XFtoMAUIApp.Views.AppointmentDetailPage"
+             x:DataType="viewmodels:AppointmentViewModel"
+             Title="Appointment Details">
+
+    <ScrollView>
+        <StackLayout Padding="20" Spacing="16">
+            <Label Text="Appointment Detail" FontSize="24" FontAttributes="Bold" />
+
+            <Label Text="Title:" />
+            <Label Text="{Binding SelectedAppointment.Title}" FontAttributes="Bold"/>
+
+            <Label Text="Date:" />
+            <Label Text="{Binding SelectedAppointment.Date}" />
+
+            <Label Text="Time:" />
+            <Label Text="{Binding SelectedAppointment.Time}" />
+
+            <Label Text="Location:" />
+            <Label Text="{Binding SelectedAppointment.Location}" />
+
+            <Label Text="Provider:" />
+            <Label Text="{Binding SelectedAppointment.ProviderName}" />
+
+            <Label Text="Client:" />
+            <Label Text="{Binding SelectedAppointment.ClientName}" />
+
+            <Label Text="Contact Email:" />
+            <Label Text="{Binding SelectedAppointment.ContactEmail}" />
+
+            <Label Text="Notes:" />
+            <Label Text="{Binding SelectedAppointment.Notes}" />
+
+            <Label Text="Status:" />
+            <Label Text="{Binding SelectedAppointment.IsConfirmed, Converter={StaticResource BoolToStatusConverter}}" />
+
+            <StackLayout Orientation="Horizontal" Spacing="10">
+                <Button Text="Confirm"
+                        Command="{Binding ConfirmSelectedAppointmentCommand}"
+                        IsEnabled="{Binding SelectedAppointment.IsConfirmed, Converter={StaticResource InverseBoolConverter}}" />
+
+                <Button Text="Cancel"
+                        Command="{Binding CancelSelectedAppointmentCommand}" />
+            </StackLayout>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>
