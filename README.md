@@ -54,8 +54,8 @@ This repository demonstrates a structured migration approach from Xamarin.Forms 
 
 ## 📸 UI Preview
 
-![Home Page](docs/screenshots/homepage.png)
-![Appointment Detail](docs/screenshots/detailpage.png)
+![Home Page](docs/screenshots/home.png)
+![Appointment Detail](docs/screenshots/appointment.png)
 
 ---
 
